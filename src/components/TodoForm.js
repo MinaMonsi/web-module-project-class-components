@@ -1,22 +1,40 @@
 import React from "react";
 
-class TodoList extends React.Component {
+class TodoForm extends React.Component {
     constructor(){
         super();
         this.state = {
-            newTask: ''
-        }
+            todo: ''
+        };
     }
+
+    handleChanges = (e) => {
+        //update state with each keystroke
+        this.setState({
+            ...this.state,
+            todo: e.target.value
+        });
+    };
+
+    submitTodo = (e) => {
+        e.preventDefault();
+        this.props.addTodo(this.state.todo)
+        this.setState({ todo: '' });
+    };
 
     render(){
         return(
-            <form>
-                <input type="text" name="newTask" value={this.state.newTask}/>
-                <button>Submit</button>
+            <div className="formDiv">
+                <form onSubmit={this.submitTodo}> 
+                <input type="text" name="todo" value={this.state.todo}
+                onChange={this.handleChanges}/>
+                <button>Add Todo</button>
                 <button>Clear</button>
             </form>
+            </div>
+            
         )
     }
 }
 
-export default TodoList;
+export default TodoForm;
