@@ -23,7 +23,7 @@ class App extends React.Component {
   constructor(){
     super();
     this.state = {
-      todos
+      todos: todos
     }
   }
   
@@ -32,7 +32,7 @@ class App extends React.Component {
     const newTodo = {
       task: todo,
       id: Date.now(),
-      completed: true
+      completed: false
     };
     this.setState({
       ...this.state,
